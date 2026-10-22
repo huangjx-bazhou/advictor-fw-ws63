@@ -162,7 +162,7 @@ API 文档树：`docs`（API 参考子树：`docs/zh-CN/api-reference`）
 > 差异口径均为 merge 提交 first-parent（M^1..M），20 笔链校验全部吻合。
 
 ## 总览
-- 更新文档 **5** 份（api-reference：adc / connection / radar-slp / radar-service / dma）
+- 更新文档 **4** 份（api-reference：adc / connection / radar-slp / radar-service ）
 - 核对无变化：快速路径 8 笔（summary 全零）+ review 条目逐条核对 11 笔（均为 sample/兼容层/Arduino/matter/ssd1306 等非 UAPI 变更的子串误关联或内部实现）
 - 未完成/待人工：!384 带入 39 个新公共头（ble_mesh×11、sle_mesh×12、sle_c_frame、sdio_slave、efuse_user、cipher_aead/mac、mbedtls_harden_adapt、wifi config×7、版本头×3 等）无文档——新模块全量生成需立项；引擎 unmapped×2491 中其余约 2450 个为 src/ 内部头（内核/协议栈/开源库/porting/HAL/samples），不属文档覆盖范围
 
@@ -173,15 +173,14 @@ API 文档树：`docs`（API 参考子树：`docs/zh-CN/api-reference`）
 - **!384（03438ff1）** SDK 1.0.8 src overlay（4522 文件）→ 更新 5 份：
   connection.md：+sle_create_connection_cancel、+sle_get_stack_state（含 sle_stack_state_t 枚举）；
   radar/slp.md：uapi_radar_set_alg_para 签名+is_write_to_nv 入参、3 新枚举、radar_target_info_t+3 成员、radar_alg_basic_para_t+4 成员、新 radar_sensitivity_para_t、radar_alg_para_t+1 成员、errcode+2 值；
-  radar/service.md：errcode_radar_client_t +NV_WRITE/NV_READ_FAILED(0x8000A133/4)；
-  dma.md：两结构体 transfer_num 约束补"不可为0"（实现新增 param_check，review 联动）。
+  radar/service.md：errcode_radar_client_t +NV_WRITE/NV_READ_FAILED(0x8000A133/4)。
   其余 33-5=28 项：16 项纯权限位变化（100755→100644，blob 相同）、bts_le_gap.h 注释级（删 @param NULL 行）、nv.h 内部 include、sle_ssap_server.h 删 void 回调 @retval 行、wifi config/efuse_user/mbedtls_harden_adapt 等内容零变化 → 全部核对无变化。
 
 ## 快速路径与核对无变化（16 笔）
 !351/!370/!368/!378/!377/!382/!385 summary 全零；!369/!371/!373/!374/!380/!383/!381/!389/!391 review 条目逐条核对（明细见 .doc-sync.json history 各笔 impact 字段），结论均为：关联实现为示例程序、FreeRTOS/rt-thread 兼容层、Arduino 适配、matter 删除件、SSD1306 vendor 拷贝等，路径含模块名子串所致误关联或纯内部实现，UAPI 返回值/入参约束零变化。
 
 ## 验证与审计（阶段3，产物在系统 TEMP/pr-refresh，未入 pr/）
-- 普通模式：5 份被改文档 ERROR 类数与基线原版逐一对照一致（adc 1/3、connection 3/3、slp 4/4、service 2/2、dma 3/3），全部为存量模板问题，零新增（过程中发现 connection.md 新增出参表列名不标准，已当场改为标准三列格式后回归一致）
+- 普通模式：5 份被改文档 ERROR 类数与基线原版逐一对照一致（adc 1/3、connection 3/3、slp 4/4、service 2/2），全部为存量模板问题，零新增（过程中发现 connection.md 新增出参表列名不标准，已当场改为标准三列格式后回归一致）
 - deep-check：confirmed 2 项（connection 的 sle_phy_tx_rx_t、slp 的 radar_rf_sw_bit 计数偏差），经 diff 证明均不在本次改动范围（存量），已记录
 - diff 审计：所有新增内容均可对应各笔 impact reasons（参数名/错误码/新接口/新类型/约束列）
 
