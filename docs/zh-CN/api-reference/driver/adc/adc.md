@@ -293,7 +293,7 @@ errcode_t uapi_adc_close_channel(uint8_t channel)
 ### uapi_adc_open_differential_channel <a id="uapi_adc_open_differential_channel"></a>
 
 ```c
-errcode_t uapi_adc_open_differential_channel(uint8_t postive_ch, uint8_t negative_ch)
+errcode_t uapi_adc_open_differential_channel(uint8_t positive_ch, uint8_t negative_ch)
 ```
 
 **头文件清单**
@@ -317,7 +317,7 @@ errcode_t uapi_adc_open_differential_channel(uint8_t postive_ch, uint8_t negativ
 
 | 名称 | 参数类型 | 详细说明 | 约束取值范围 |
 | ---- | ---- | ---- | ---- |
-| postive_ch | uint8_t | ADC正极通道 | 0 ~ ADC_CHANNEL_MAX_NUM-1 (WS63最大为5) |
+| positive_ch | uint8_t | ADC正极通道 | 0 ~ ADC_CHANNEL_MAX_NUM-1 (WS63最大为5) |
 | negative_ch | uint8_t | ADC负极通道 | 0 ~ ADC_CHANNEL_MAX_NUM-1 (WS63最大为5) |
 
 **返回值**
@@ -339,7 +339,7 @@ errcode_t uapi_adc_open_differential_channel(uint8_t postive_ch, uint8_t negativ
 ### uapi_adc_close_differential_channel <a id="uapi_adc_close_differential_channel"></a>
 
 ```c
-errcode_t uapi_adc_close_differential_channel(uint8_t postive_ch, uint8_t negative_ch)
+errcode_t uapi_adc_close_differential_channel(uint8_t positive_ch, uint8_t negative_ch)
 ```
 
 **头文件清单**
@@ -363,7 +363,7 @@ errcode_t uapi_adc_close_differential_channel(uint8_t postive_ch, uint8_t negati
 
 | 名称 | 参数类型 | 详细说明 | 约束取值范围 |
 | ---- | ---- | ---- | ---- |
-| postive_ch | uint8_t | ADC正极通道 | 必须与当前已开启的正极工作通道一致 |
+| positive_ch | uint8_t | ADC正极通道 | 必须与当前已开启的正极工作通道一致 |
 | negative_ch | uint8_t | ADC负极通道 | 必须与当前已开启的负极工作通道一致 |
 
 **返回值**
@@ -425,7 +425,7 @@ errcode_t uapi_adc_auto_scan_ch_enable(uint8_t channel, adc_scan_config_t config
 | -------- | -------- | -------- |
 | ERRCODE_SUCC(0x0) | 执行成功 | 自动扫描启用成功 |
 | ERRCODE_ADC_INVALID_PARAMETER(0x80001141) | 参数无效 | 通道号超出范围、callback为NULL、config参数非法 |
-| ERRCODE_PWM_NOT_POWER_ON(0x80001084) | ADC未上电 | ADC未通过uapi_adc_power_en()上电 |
+| ERRCODE_ADC_NOT_POWER_ON(0x80001146) | ADC未上电 | ADC未通过uapi_adc_power_en()上电 |
 | Other | 其他错误码，参考errcode_t | 执行失败 |
 
 **Kconfig配置**

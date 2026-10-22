@@ -146,6 +146,8 @@ typedef enum {
     ERRCODE_RC_TX_WAVE_TX_WAVE_LEN,                        /*!< 雷达波形参数：发射波形长度 */
     ERRCODE_RC_TX_WAVE_TX_WAVE_BITS,                       /*!< 雷达波形参数：波形扩频前的三元码序列 */
     ERRCODE_RC_RADAR_VERSION_NOT_INIT,                     /*!< 雷达版本未初始化 */
+    ERRCODE_RC_NV_WRITE_FAILED,                             /*!< 雷达写NV失败 */
+    ERRCODE_RC_NV_READ_FAILED,                              /*!< 雷达读NV失败 */
     ERRCODE_RC_START_UP = ERRCODE_RADAR_CLIENT_SW_BASE,    /*!< 启动异常 */
     ERRCODE_RC_CLOSE,                                      /*!< 关闭异常 */
     ERRCODE_RC_FRAME_BUFFER_FULL,                          /*!< 上报数据缓冲满，bufferfull，丢帧 */
@@ -192,6 +194,8 @@ typedef enum {
 | ERRCODE_RC_TX_WAVE_TX_WAVE_LEN | 0x8000A130 | 雷达波形参数：发射波形长度 |
 | ERRCODE_RC_TX_WAVE_TX_WAVE_BITS | 0x8000A131 | 雷达波形参数：波形扩频前的三元码序列 |
 | ERRCODE_RC_RADAR_VERSION_NOT_INIT | 0x8000A132 | 雷达版本未初始化 |
+| ERRCODE_RC_NV_WRITE_FAILED | 0x8000A133 | 雷达写NV失败 |
+| ERRCODE_RC_NV_READ_FAILED | 0x8000A134 | 雷达读NV失败 |
 | ERRCODE_RC_START_UP | 0x8000A183 | 启动异常 |
 | ERRCODE_RC_CLOSE | 0x8000A184 | 关闭异常 |
 | ERRCODE_RC_FRAME_BUFFER_FULL | 0x8000A185 | 上报数据缓冲满，丢帧 |

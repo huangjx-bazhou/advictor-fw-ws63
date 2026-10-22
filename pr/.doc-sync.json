@@ -1,8 +1,8 @@
 {
   "repo": "D:\\nwx\\HiSpark\\pro\\fbb_ws63_pr_doc_refresh",
-  "head_commit": "8c747249e81d3139181acb7845b2d50ead827839",
+  "head_commit": "67afcd83",
   "head_ref": "master",
-  "updated_at": "2026-10-22T11:13:43+08:00",
+  "updated_at": "2026-10-22T11:53:28",
   "history": [
     {
       "head_commit": "8c747249e81d3139181acb7845b2d50ead827839",
@@ -12,6 +12,206 @@
       "docs_added": 0,
       "docs_removed": 0,
       "impact": "baseline-init（map_docs 全量扫描：110 份文档映射 96 个公共头；1 份文档 controller.md 无 #include 代码块未映射，见报告）",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "d5a6ab99",
+      "pr": "PR !351（分支 feature/hibot-component-manager）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零（2 文件：src 实现+构建配置，未触及文档映射面）",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "d7c7fe28",
+      "pr": "PR !369（分支 codex/add-pmp-rtc-samples）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review-recommended×13（pmp/rtc sample 新增等子串关联）；逐条核对：均为新增示例代码（pmp_sample/rtc_sample/pmp_cfg.c），UAPI 返回值/入参约束无变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "4411429f",
+      "pr": "PR !370（分支 feature/hibot-component-manager）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "3808e172",
+      "pr": "PR !371（分支 merge master into master）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×2（rt_dl.c 关联 at/LiteOS指南）；核对：下载器内部实现调整，无 UAPI 语义变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "d52dc670",
+      "pr": "PR !368（分支 merge master into master）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零（docs 树重组，api-reference 零变化）",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "08b0a947",
+      "pr": "PR !362（分支 merge cc into master）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "update×1（MQTT指南<-MQTTClient.h 宏 MQTTClient_SSLOptions_initializer）+review×8；核对：宏仅新增 WEAR_LITEOS_ADAPT 条件分支，指南示例使用默认分支语义不变→核对无变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "076219da",
+      "pr": "PR !373（分支 merge master into master）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×7（timer.c/envent_group.c 等 FreeRTOS 兼容层关联）；核对：兼容层内部实现，无 UAPI 变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "9a3c9c58",
+      "pr": "PR !364（分支 fix-ws63-positive-ch）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 1,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "update×2（api-reference/adc.md + samples/adc.md，签名变更 uapi_adc_open/close_differential_channel 参数名 postive_ch→positive_ch）；已更新：api adc.md 修正声明×2+入参表×2（共4处）；samples/adc.md 未引用差分接口→核对无变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "bfa36419",
+      "pr": "PR !365（分支 fix-ws63-adc-not-power-error）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 1,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "update×1（device.md<-errcode.h 属误映射）+review×3；实质：errcode.h 新增 ERRCODE_ADC_NOT_POWER_ON(0x80001146)，adc.c 修正 auto_scan 返回码张冠李戴（PWM→ADC）；已更新：api adc.md 返回值表 0x80001084→0x80001146",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "cf4b2614",
+      "pr": "PR !378（分支 feat/ws63-build-log-terminal）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零（构建脚本）",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "1a98f380",
+      "pr": "PR !377（分支 merge master into master）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零（docs 全量重生成点）",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "1450a303",
+      "pr": "PR !374（分支 test/arduino_component）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×23（Arduino 适配 .cpp 关联）；核对：Arduino 适配层删除/调整，非文档化 UAPI",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "4d7c1ade",
+      "pr": "PR !380（分支 merge master into master）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×9（rt_thread 组件删除件关联）；核对：兼容组件删除，无 UAPI 变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "403fac30",
+      "pr": "PR !382（分支 test/arduino_component）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "d31951a7",
+      "pr": "PR !383（分支 codex/freertos-component-only）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×7（FreeRTOS 兼容层删除件）；核对：内核兼容层调整，无 UAPI 变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "119a39ba",
+      "pr": "PR !381（分支 feature/board-runtime-dependency-order）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×32（main.c 新增 external_board_init 弱符号，路径含模块名子串大面积误关联）；核对：应用层钩子，UAPI 零变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "d341fcf4",
+      "pr": "PR !385（分支 fix/ws63-out-of-tree-component-compat）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "summary 全零（构建/脚本）",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "03438ff1",
+      "pr": "PR !384（分支 upgrade/ws63-108-src-overlay）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 5,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "update×109（api-reference 内 33）+review×41+unmapped×2491（内部头涌入，SDK1.0.8 overlay 4522文件）；已更新 5 份：connection.md（+sle_create_connection_cancel、+sle_get_stack_state、+sle_stack_state_t 枚举）、radar/slp.md（set_alg_para 签名+is_write_to_nv、3新枚举、4结构体、errcode+2）、radar/service.md（errcode+2）、dma.md（transfer_num 不可为0×2）；16 项 mode-only（100755→100644 blob 同）+gap/nv/ssap_server 注释级+wifi config 类内容零变→核对无变化；unmapped 中 src/include 公共头 39 个（ble_mesh/sle_mesh 等）标注待人工立项",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "424dc557",
+      "pr": "PR !389（分支 upgrade/ws63-108-src-overlay）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×24（matter 删除件路径子串误关联）；核对：纯删除清理 66 文件，无 UAPI 变化",
+      "report": "doc-change-report.md"
+    },
+    {
+      "head_commit": "67afcd83",
+      "pr": "PR !391（分支 fix/ssd1306-drawline-loop）",
+      "updated_at": "2026-10-22T11:53:28",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "review×21（ssd1306.c 各 vendor demo 拷贝子串误关联）；核对：OLED 驱动画线修复，uapi_* 调用零变化",
       "report": "doc-change-report.md"
     }
   ],

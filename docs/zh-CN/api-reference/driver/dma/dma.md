@@ -16,6 +16,7 @@ LLI 链式传输将多个传输节点串联成链表，由硬件自动逐节点�
 | -------- | -------- |
 | [uapi_dma_init](#uapi_dma_init) | 初始化DMA模块 |
 | [uapi_dma_deinit](#uapi_dma_deinit) | 去初始化DMA模块 |
+| [uapi_dma_is_initialized](#uapi_dma_is_initialized) | 查询DMA模块是否已经初始化 |
 | [uapi_dma_open](#uapi_dma_open) | 开启DMA模块 |
 | [uapi_dma_close](#uapi_dma_close) | 关闭DMA模块 |
 | [uapi_dma_start_transfer](#uapi_dma_start_transfer) | 启动指定通道的DMA传输 |
@@ -96,6 +97,34 @@ void uapi_dma_deinit(void)
 **参考案例**
 
 - [i2s_dma_lli_master_demo.c](https://gitcode.com/HiSpark/fbb_ws63/tree/master/src/application/samples/peripheral/i2s_dma_lli/i2s_dma_lli_master_demo.c)
+
+
+### uapi_dma_is_initialized <a id="uapi_dma_is_initialized"></a>
+
+```c
+bool uapi_dma_is_initialized(void)
+```
+
+**声明头文件**
+
+```c
+#include "include/driver/dma.h"
+```
+
+**功能说明**
+
+- 查询 DMA 模块是否已经初始化
+- 返回 DMA 模块当前的初始化状态
+- 不修改 DMA 模块配置或运行状态
+
+**返回值**
+
+- 返回类型：bool
+
+| 返回值 | 文字含义 | 触发场景 |
+| -------- | -------- | -------- |
+| true | DMA 模块已经初始化 | 已通过 uapi_dma_init() 完成初始化且尚未去初始化 |
+| false | DMA 模块尚未初始化 | 尚未初始化或已通过 uapi_dma_deinit() 去初始化 |
 
 
 ### uapi_dma_open <a id="uapi_dma_open"></a>
@@ -740,7 +769,7 @@ typedef struct dma_ch_user_memory_config {
 | ------- | ------- | ---- |
 | src | uint32_t | 传输源地址 |
 | dest | uint32_t | 传输目的地址 |
-| transfer_num | uint16_t | 传输数据量 |
+| transfer_num | uint16_t | 传输数据量，取值范围[1, 65535]，不可为0 |
 | priority | uint8_t | 传输通道优先级（最低为0，最高为3） |
 | width | uint8_t | 传输数据宽度：0-1字节，1-2字节，2-4字节 |
 
@@ -771,7 +800,7 @@ typedef struct dma_ch_user_peripheral_config {
 | ------- | ------- | ---- |
 | src | uint32_t | 传输源地址 |
 | dest | uint32_t | 传输目的地址 |
-| transfer_num | uint16_t | 传输数据量 |
+| transfer_num | uint16_t | 传输数据量；DMA流控模式（trans_type取值0-3）下不可为0 |
 | src_handshaking | uint16_t | 源端硬件握手号，参考hal_dma_handshaking_source_t |
 | dest_handshaking | uint16_t | 目的端硬件握手号，参考hal_dma_handshaking_source_t |
 | trans_type | uint8_t | 传输类型：0-内存到内存(DMA流控)，1-内存到外设(DMA流控)，2-外设到内存(DMA流控)，3-外设到外设(DMA流控)，4-外设到内存(外设流控)，5-外设到外设(源端外设流控)，6-内存到外设(外设流控)，7-外设到外设(目的端外设流控) |

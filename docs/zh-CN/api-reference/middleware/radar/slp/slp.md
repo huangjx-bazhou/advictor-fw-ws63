@@ -71,7 +71,7 @@ errcode_radar_client_t uapi_radar_set_hardware_para(radar_hardware_para_t *para)
 ### uapi_radar_set_alg_para <a id="uapi_radar_set_alg_para"></a>
 
 ```c
-errcode_radar_client_t uapi_radar_set_alg_para(radar_alg_para_t *para)
+errcode_radar_client_t uapi_radar_set_alg_para(radar_alg_para_t *para, uint8_t is_write_to_nv)
 ```
 
 **头文件清单**
@@ -82,7 +82,8 @@ errcode_radar_client_t uapi_radar_set_alg_para(radar_alg_para_t *para)
 
 **功能说明**
 
-- 设置雷达算法参数，包括基础参数（上报类型、灵敏度、距离检测边界、退出时延、端子线朝向、静目标创建距离门限）和AI (Artificial Intelligence) 补偿参数
+- 设置雷达算法参数，包括基础参数（上报类型、灵敏度、距离检测边界、退出时延、端子线朝向、静目标创建距离门限、天线间距缩放系数、角度检测边界、抗多径虚警模式、校准参数存储模式）、灵敏度参数和AI (Artificial Intelligence) 补偿参数
+- 可通过is_write_to_nv控制是否将输入参数写入NV (Non-Volatile Memory) 保存
 - 调用前需确保芯片已上电，否则参数配置不生效
 - 重复调用将覆盖上次配置的算法参数
 
@@ -96,6 +97,7 @@ errcode_radar_client_t uapi_radar_set_alg_para(radar_alg_para_t *para)
 | 名称 | 参数类型 | 详细说明 | 约束取值范围 |
 | ---- | ---- | ---- | ---- |
 | para | [radar_alg_para_t](#struct_radar_alg_para_t) * | 雷达算法参数指针 | 非NULL，指向已初始化的参数结构体 |
+| is_write_to_nv | uint8_t | 是否将参数写入NV | 0表示不写入，非0表示写入 |
 
 **返回值**
 
@@ -624,8 +626,8 @@ typedef enum {
 ```c
 typedef enum {
     RADAR_FRAME_MODE_RANGING,               /*!< SLP测距共存帧模式 */
-    RADAR_FRAME_MODE_DEFAULT,                /*!< 单雷达帧模式 */
-    RADAR_FRAME_MODE_VENDOR,                 /*!< 单雷达模式：厂商帧模式 */
+    RADAR_FRAME_MODE_DEFAULT,               /*!< 单雷达帧模式 */
+    RADAR_FRAME_MODE_VENDOR,                /*!< 单雷达模式：厂商帧模式 */
 } radar_frame_mode_t;
 ```
 
@@ -634,6 +636,50 @@ typedef enum {
 | RADAR_FRAME_MODE_RANGING | 0 | SLP测距共存帧模式 |
 | RADAR_FRAME_MODE_DEFAULT | 1 | 单雷达帧模式 |
 | RADAR_FRAME_MODE_VENDOR | 2 | 单雷达模式：厂商帧模式 |
+
+### radar_anti_multipath_mode_t <a id="enum_radar_anti_multipath_mode_t"></a>
+
+```c
+typedef enum {
+    RADAR_ANTI_MULTIPATH_DEFAULT_MODE,      /*!< 抗多径虚警默认模式 */
+    RADAR_ANTI_MULTIPATH_STRENGTHEN_MODE,   /*!< 抗多径虚警能力强化模式 */
+    RADAR_ANTI_MULTIPATH_WEAKEN_MODE,       /*!< 抗多径虚警能力弱化模式 */
+} radar_anti_multipath_mode_t;
+```
+
+| 枚举成员 | 取值 | 描述 |
+| ------- | ---- | ---- |
+| RADAR_ANTI_MULTIPATH_DEFAULT_MODE | 0 | 抗多径虚警默认模式 |
+| RADAR_ANTI_MULTIPATH_STRENGTHEN_MODE | 1 | 抗多径虚警能力强化模式 |
+| RADAR_ANTI_MULTIPATH_WEAKEN_MODE | 2 | 抗多径虚警能力弱化模式 |
+
+### radar_cali_res_save_mode_t <a id="enum_radar_cali_res_save_mode_t"></a>
+
+```c
+typedef enum {
+    RADAR_CALI_RES_SAVE_IN_NV,              /*!< 雷达校准参数存储在host NV中 */
+    RADAR_CALI_RES_SAVE_IN_EEPROM,          /*!< 雷达校准参数存储在device EEPROM中 */
+} radar_cali_res_save_mode_t;
+```
+
+| 枚举成员 | 取值 | 描述 |
+| ------- | ---- | ---- |
+| RADAR_CALI_RES_SAVE_IN_NV | 0 | 雷达校准参数存储在host NV中 |
+| RADAR_CALI_RES_SAVE_IN_EEPROM | 1 | 雷达校准参数存储在device EEPROM中 |
+
+### radar_report_mode_t <a id="enum_radar_report_mode_t"></a>
+
+```c
+typedef enum {
+    RADAR_REPORT_RES = 0,                   /*!< 只上报检测结果 */
+    RADAR_REPORT_SLEEP_RAW_DATA = 1,        /*!< 同时上报检测结果和睡眠原始数据 */
+} radar_report_mode_t;
+```
+
+| 枚举成员 | 取值 | 描述 |
+| ------- | ---- | ---- |
+| RADAR_REPORT_RES | 0 | 只上报检测结果 |
+| RADAR_REPORT_SLEEP_RAW_DATA | 1 | 同时上报检测结果和睡眠原始数据 |
 
 ### errcode_radar_client_t <a id="enum_errcode_radar_client_t"></a>
 
@@ -670,6 +716,8 @@ typedef enum {
     ERRCODE_RC_TX_WAVE_TX_WAVE_LEN,                        /*!< 雷达波形参数：发射波形长度 */
     ERRCODE_RC_TX_WAVE_TX_WAVE_BITS,                       /*!< 雷达波形参数：波形扩频前的三元码序列 */
     ERRCODE_RC_RADAR_VERSION_NOT_INIT,                     /*!< 雷达版本未初始化 */
+    ERRCODE_RC_NV_WRITE_FAILED,                             /*!< 雷达写NV失败 */
+    ERRCODE_RC_NV_READ_FAILED,                              /*!< 雷达读NV失败 */
     ERRCODE_RC_START_UP = ERRCODE_RADAR_CLIENT_SW_BASE,    /*!< 启动异常 */
     ERRCODE_RC_CLOSE,                                      /*!< 关闭异常 */
     ERRCODE_RC_FRAME_BUFFER_FULL,                          /*!< 上报数据缓冲满，bufferfull，丢帧 */
@@ -716,6 +764,8 @@ typedef enum {
 | ERRCODE_RC_TX_WAVE_TX_WAVE_LEN | 0x8000A130 | 发射波形长度 |
 | ERRCODE_RC_TX_WAVE_TX_WAVE_BITS | 0x8000A131 | 波形扩频前的三元码序列 |
 | ERRCODE_RC_RADAR_VERSION_NOT_INIT | 0x8000A132 | 雷达版本未初始化 |
+| ERRCODE_RC_NV_WRITE_FAILED | 0x8000A133 | 雷达写NV失败 |
+| ERRCODE_RC_NV_READ_FAILED | 0x8000A134 | 雷达读NV失败 |
 | ERRCODE_RC_START_UP | 0x8000A183 | 启动异常 |
 | ERRCODE_RC_CLOSE | 0x8000A184 | 关闭异常 |
 | ERRCODE_RC_FRAME_BUFFER_FULL | 0x8000A185 | 上报数据缓冲满，丢帧 |
@@ -825,6 +875,9 @@ typedef struct {
     int16_t rng; /*!< 雷达检测结果：目标距离(厘米) */
     int16_t agl; /*!< 雷达检测结果：目标角度(0.01度) */
     int16_t vel; /*!< 雷达检测结果：目标速度(厘米/秒) */
+    uint16_t activity_intensity; /*!< 雷达检测结果：目标活动强度 */
+    uint16_t reserve0; /*!< 雷达数据：保留字段0 */
+    uint16_t reserve1; /*!< 雷达数据：保留字段1 */
 } radar_target_info_t;
 ```
 
@@ -836,6 +889,9 @@ typedef struct {
 | rng | int16_t | 目标距离，单位厘米 |
 | agl | int16_t | 目标角度，单位0.01度 |
 | vel | int16_t | 目标速度，单位厘米/秒 |
+| activity_intensity | uint16_t | 目标活动强度 |
+| reserve0 | uint16_t | 保留字段0 |
+| reserve1 | uint16_t | 保留字段1 |
 
 ### radar_result_t <a id="struct_radar_result_t"></a>
 
@@ -939,12 +995,16 @@ typedef struct {
 
 ```c
 typedef struct {
-    uint32_t rpt_mode;     /*!< 雷达算法基础参数: 数据上报类型，默认值为0 */
-    uint32_t sensitivity;  /*!< 雷达算法基础参数: 检测灵敏度, 默认值为0 */
-    uint32_t rng_boundary; /*!< 雷达算法基础参数: 距离检测边界，单位cm，默认值700 */
-    uint32_t delay_time;   /*!< 雷达算法基础参数: 退出时延，单位S，默认值20 */
+    uint32_t rpt_mode;      /*!< 雷达算法基础参数: 数据上报类型，默认值为0，参考 radar_report_mode_t */
+    uint32_t sensitivity;   /*!< 雷达算法基础参数: 检测灵敏度, 默认值为0 */
+    uint32_t rng_boundary;  /*!< 雷达算法基础参数: 距离检测边界，单位cm，默认值700 */
+    uint32_t delay_time;    /*!< 雷达算法基础参数: 退出时延，单位S，默认值20 */
+    uint16_t ant_space_amp_coef;    /*!< 雷达算法基础参数: 天线间距缩放系数，默认值10000 */
     uint16_t static_create_range;   /*!< 雷达算法基础参数: 静目标允许创建的距离门限。单位cm，默认为0 */
-    uint8_t is_wire_down;  /*!< 雷达算法基础参数: 端子线朝向，影响角度上报值的正负。1表示朝下，0表示朝上 */
+    uint8_t is_wire_down;   /*!< 雷达算法基础参数: 端子线朝向，影响角度上报值的正负。1表示朝下，0表示朝上 */
+    uint8_t angle_boundary; /*!< 雷达算法基础参数: 角度检测边界，单位°，默认值60 */
+    uint8_t anti_multipath_mode; /*!< 雷达算法基础参数: 抗多径虚警模式。默认值0，参考 radar_anti_multipath_mode_t */
+    uint8_t cali_res_save_mode;  /*!< 雷达算法基础参数: 校准参数存储模式，默认值为0，表示存入Host芯片的NV中，参考 radar_cali_res_save_mode_t */
 } radar_alg_basic_para_t;
 ```
 
@@ -952,20 +1012,24 @@ typedef struct {
 
 | 成员名称 | 数据类型 | 描述 |
 | ------- | ------- | ---- |
-| rpt_mode | uint32_t | 数据上报类型，默认值为0 |
+| rpt_mode | uint32_t | 数据上报类型，默认值为0，参考[radar_report_mode_t](#enum_radar_report_mode_t) |
 | sensitivity | uint32_t | 检测灵敏度，默认值为0 |
 | rng_boundary | uint32_t | 距离检测边界，单位cm，默认值700 |
 | delay_time | uint32_t | 退出时延，单位S，默认值20 |
+| ant_space_amp_coef | uint16_t | 天线间距缩放系数，默认值10000 |
 | static_create_range | uint16_t | 静目标允许创建的距离门限，单位cm，默认为0 |
 | is_wire_down | uint8_t | 端子线朝向，1表示朝下，0表示朝上 |
+| angle_boundary | uint8_t | 角度检测边界，单位°，默认值60 |
+| anti_multipath_mode | uint8_t | 抗多径虚警模式，默认值0，参考[radar_anti_multipath_mode_t](#enum_radar_anti_multipath_mode_t) |
+| cali_res_save_mode | uint8_t | 校准参数存储模式，默认值0表示存入Host芯片的NV中，参考[radar_cali_res_save_mode_t](#enum_radar_cali_res_save_mode_t) |
 
 ### radar_ai_para_t <a id="struct_radar_ai_para_t"></a>
 
 ```c
 typedef struct {
-    uint16_t ai_status;       /*!< 雷达AI参数: AI抗干扰功能开关. 0表示关闭，1表示打开。默认是1 */
     int32_t dynamic_offset_direction[RADAR_AI_OFFSET_PARA_NUM]; /*!< 雷达AI参数: AI动检测补偿参数。取值范围[-100000, 100000]，默认值0 */
     int32_t static_offset_direction[RADAR_AI_OFFSET_PARA_NUM]; /*!< 雷达AI参数: AI静检测补偿参数。取值范围[-100000, 100000]，默认值0 */
+    uint16_t ai_status;       /*!< 雷达AI参数: AI抗干扰功能开关. 0表示关闭，1表示打开。默认是1 */
 } radar_ai_para_t;
 ```
 
@@ -973,17 +1037,38 @@ typedef struct {
 
 | 成员名称 | 数据类型 | 描述 |
 | ------- | ------- | ---- |
-| ai_status | uint16_t | AI抗干扰功能开关，0表示关闭，1表示打开，默认值1 |
 | dynamic_offset_direction | int32_t[8] | AI动检测补偿参数，取值范围[-100000, 100000]，默认值0 |
 | static_offset_direction | int32_t[8] | AI静检测补偿参数，取值范围[-100000, 100000]，默认值0 |
+| ai_status | uint16_t | AI抗干扰功能开关，0表示关闭，1表示打开，默认值1 |
+
+### radar_sensitivity_para_t <a id="struct_radar_sensitivity_para_t"></a>
+
+```c
+typedef struct {
+    uint8_t para_len;                                         /*!< 雷达检测灵敏度参数: 灵敏度参数长度 */
+    uint8_t dyn_sensitivity_0[RADAR_MAX_SENSITIVITY_ARR_LEN]; /*!< 雷达检测灵敏度参数: 动目标检测灵敏度参数0 */
+    uint8_t dyn_sensitivity_1[RADAR_MAX_SENSITIVITY_ARR_LEN]; /*!< 雷达检测灵敏度参数: 动目标检测灵敏度参数1 */
+    uint8_t sta_sensitivity_0[RADAR_MAX_SENSITIVITY_ARR_LEN]; /*!< 雷达检测灵敏度参数: 静目标检测灵敏度参数0 */
+} radar_sensitivity_para_t;
+```
+
+**成员说明**
+
+| 成员名称 | 数据类型 | 描述 |
+| ------- | ------- | ---- |
+| para_len | uint8_t | 灵敏度参数长度 |
+| dyn_sensitivity_0 | uint8_t[60] | 动目标检测灵敏度参数0 |
+| dyn_sensitivity_1 | uint8_t[60] | 动目标检测灵敏度参数1 |
+| sta_sensitivity_0 | uint8_t[60] | 静目标检测灵敏度参数0 |
 
 ### radar_alg_para_t <a id="struct_radar_alg_para_t"></a>
 
 ```c
 typedef struct {
-    radar_alg_basic_para_t basic_para;        /*!< 雷达算法参数: 基础参数 */
-    radar_ai_para_t ai_para;                  /*!< 雷达算法参数: AI补偿参数 */
-    uint8_t reserve[RADAR_ALG_PARA_RSV_BYTE]; /*!< 雷达算法参数：预留位 */
+    radar_alg_basic_para_t basic_para;          /*!< 雷达算法参数: 基础参数 */
+    radar_ai_para_t ai_para;                    /*!< 雷达算法参数: AI补偿参数 */
+    radar_sensitivity_para_t sensitivity_para;  /*!< 雷达算法参数: 灵敏度参数 */
+    uint8_t reserve[RADAR_ALG_PARA_RSV_BYTE];   /*!< 雷达算法参数：预留位 */
 } radar_alg_para_t;
 ```
 
@@ -993,6 +1078,7 @@ typedef struct {
 | ------- | ------- | ---- |
 | basic_para | [radar_alg_basic_para_t](#struct_radar_alg_basic_para_t) | 基础参数 |
 | ai_para | [radar_ai_para_t](#struct_radar_ai_para_t) | AI补偿参数 |
+| sensitivity_para | [radar_sensitivity_para_t](#struct_radar_sensitivity_para_t) | 灵敏度参数 |
 | reserve | uint8_t[8] | 预留位 |
 
 
