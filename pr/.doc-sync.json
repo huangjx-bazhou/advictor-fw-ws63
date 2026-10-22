@@ -1,0 +1,460 @@
+{
+  "repo": "D:\\nwx\\HiSpark\\pro\\fbb_ws63_pr_doc_refresh",
+  "head_commit": "8c747249e81d3139181acb7845b2d50ead827839",
+  "head_ref": "master",
+  "updated_at": "2026-10-22T11:13:43+08:00",
+  "history": [
+    {
+      "head_commit": "8c747249e81d3139181acb7845b2d50ead827839",
+      "pr": "baseline-init（API 文档基线；文档树对应 !366 merge 8c747249，src 版本 1.10.107，与 !361 文档全量重生成点 62a26375 的 src 树一致；基线后 docs/zh-CN/api-reference 零变化）",
+      "updated_at": "2026-10-22T11:00:38+08:00",
+      "docs_updated": 0,
+      "docs_added": 0,
+      "docs_removed": 0,
+      "impact": "baseline-init（map_docs 全量扫描：110 份文档映射 96 个公共头；1 份文档 controller.md 无 #include 代码块未映射，见报告）",
+      "report": "doc-change-report.md"
+    }
+  ],
+  "modules": {
+    "docs/zh-CN/api-reference/driver/adc/adc.md": {
+      "header": "src/include/driver/adc.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/dma/dma.md": {
+      "header": "src/include/driver/dma.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/efuse/efuse.md": {
+      "header": "src/include/driver/efuse.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/gpio/gpio.md": {
+      "header": "src/include/driver/gpio.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/i2c/i2c.md": {
+      "header": "src/include/driver/i2c.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/i2s/i2s.md": {
+      "header": "src/include/driver/i2s.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/pinctrl/pinctrl.md": {
+      "header": "src/include/driver/pinctrl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/pmp/pmp.md": {
+      "header": "src/include/driver/drv_pmp.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/pwm/pwm.md": {
+      "header": "src/include/driver/pwm.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/rtc/rtc.md": {
+      "header": "src/include/driver/rtc.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/security/cipher/cipher.md": {
+      "header": "src/include/driver/security_unified/cipher.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/security/hash/hash.md": {
+      "header": "src/include/driver/security_unified/security_sha256.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/security/hw_security_init/hw_security_init.md": {
+      "header": "src/include/driver/security_unified/security_init.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/security/km/km.md": {
+      "header": "src/include/driver/security_unified/km.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/security/pke/pke.md": {
+      "header": "src/include/driver/security_unified/unified_cipher_pke.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/security/trng/trng.md": {
+      "header": "src/include/driver/security_unified/trng.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/sfc/sfc.md": {
+      "header": "src/include/driver/sfc.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/spi/spi.md": {
+      "header": "src/include/driver/spi.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/systick/systick.md": {
+      "header": "src/include/driver/systick.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/tcxo/tcxo.md": {
+      "header": "src/include/driver/tcxo.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/timer/timer.md": {
+      "header": "src/include/driver/timer.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/tsensor/tsensor.md": {
+      "header": "src/include/driver/tsensor.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/uart/uart.md": {
+      "header": "src/include/driver/uart.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/driver/watchdog/watchdog.md": {
+      "header": "src/include/driver/watchdog.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/ble/factory/factory.md": {
+      "header": "src/include/middleware/services/bts/ble/bts_factory.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/ble/gap/gap.md": {
+      "header": "src/include/middleware/services/bts/ble/bts_le_gap.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/ble/gatt/client/client.md": {
+      "header": "src/include/middleware/services/bts/ble/bts_gatt_client.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/ble/gatt/server/server.md": {
+      "header": "src/include/middleware/services/bts/ble/bts_gatt_server.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/audio/a2dp/a2dp.md": {
+      "header": "src/include/middleware/services/bts/br/bts_a2dp_source.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/audio/avrcp/target/target.md": {
+      "header": "src/include/middleware/services/bts/br/bts_avrcp_target.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/audio/hfp/ag/ag.md": {
+      "header": "src/include/middleware/services/bts/br/bts_hfp_ag.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/audio/hfp/hf/hf.md": {
+      "header": "src/include/middleware/services/bts/br/bts_hfp_hf.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/gap/gap.md": {
+      "header": "src/include/middleware/services/bts/br/bts_br_gap.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/pan/pan.md": {
+      "header": "src/include/middleware/services/bts/br/bts_pan.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/pbap/pbap.md": {
+      "header": "src/include/middleware/services/bts/br/bts_pbap.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/bts/br/spp/spp.md": {
+      "header": "src/include/middleware/services/bts/br/bts_spp.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/radar/service/service.md": {
+      "header": "src/include/middleware/services/radar/radar_errcode.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/radar/slp/slp.md": {
+      "header": "src/include/middleware/services/radar/radar_service_slp.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/radar/sub_6g/sub_6g.md": {
+      "header": "src/include/middleware/services/radar/radar_service_sub_6g.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/chba/chba.md": {
+      "header": "src/include/middleware/services/bts/sle_chba/sle_chba_manager.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/connection/connection.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_connection_manager.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/service/factory/factory.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_factory_manager.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/service/glp/glp.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_glp_manager.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/service/hadm/hadm.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_hadm_manager.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/service/low_latency/low_latency.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_low_latency.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/service/ota/ota.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_ota.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/ssap/client/client.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_ssap_client.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/sle/ssap/server/server.md": {
+      "header": "src/include/middleware/services/bts/sle/sle_ssap_server.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/slp/slp.md": {
+      "header": "src/include/middleware/services/slp/slp.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/utils/at.md": {
+      "header": "src/include/middleware/utils/at.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/utils/crc.md": {
+      "header": "src/include/middleware/utils/uapi_crc.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/utils/dfx/dfx.md": {
+      "header": "src/include/middleware/utils/diag.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/utils/nv.md": {
+      "header": "src/include/middleware/utils/nv.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/utils/partition.md": {
+      "header": "src/include/middleware/utils/partition.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/utils/upgrade.md": {
+      "header": "src/include/middleware/utils/upg.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/wifi/alg/alg.md": {
+      "header": "src/include/middleware/services/wifi/wifi_alg.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/wifi/device/device.md": {
+      "header": "src/include/middleware/services/wifi/wifi_device.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/wifi/hotspot/hotspot.md": {
+      "header": "src/include/middleware/services/wifi/wifi_hotspot.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/wifi/p2p/p2p.md": {
+      "header": "src/include/middleware/services/wifi/wifi_p2p.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/middleware/wifi/platform/platform.md": {
+      "header": "src/include/middleware/services/wifi/plat_device.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/atomic/atomic.md": {
+      "header": "src/kernel/osal/include/atomic/osal_atomic.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/debug/debug.md": {
+      "header": "src/kernel/osal/include/debug/osal_debug.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/device/device.md": {
+      "header": "src/kernel/osal/include/device/osal_device.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/drvbox/drvbox.md": {
+      "header": "src/kernel/osal/include/drvbox/osal_drvbox.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/event/event.md": {
+      "header": "src/kernel/osal/include/event/osal_event.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/fileops/fileops.md": {
+      "header": "src/kernel/osal/include/fileops/osal_fileops.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/interrupt/interrupt.md": {
+      "header": "src/kernel/osal/include/interrupt/osal_interrupt.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/lock/mutex/mutex.md": {
+      "header": "src/kernel/osal/include/lock/osal_mutex.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/lock/rwlock/rwlock.md": {
+      "header": "src/kernel/osal/include/lock/osal_rwlock.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/lock/spinlock/spinlock.md": {
+      "header": "src/kernel/osal/include/lock/osal_spinlock.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/math/arithmetic/arithmetic.md": {
+      "header": "src/kernel/osal/include/math/osal_math.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/math/bitmap/bitmap.md": {
+      "header": "src/kernel/osal/include/math/osal_bitmap.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/memory/address/address.md": {
+      "header": "src/kernel/osal/include/memory/osal_addr.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/memory/barrier/barrier.md": {
+      "header": "src/kernel/osal/include/memory/osal_barrier.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/memory/cache/cache.md": {
+      "header": "src/kernel/osal/include/memory/osal_cache.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/msgqueue/msgqueue.md": {
+      "header": "src/kernel/osal/include/msgqueue/osal_msgqueue.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/osal.md": {
+      "header": "src/kernel/osal/include/osal_list.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/proc/proc.md": {
+      "header": "src/kernel/osal/include/proc/osal_proc.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/schedule/completion/completion.md": {
+      "header": "src/kernel/osal/include/schedule/osal_completion.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/schedule/delaywork/delaywork.md": {
+      "header": "src/kernel/osal/include/schedule/osal_delaywork.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/schedule/task/task.md": {
+      "header": "src/kernel/osal/include/schedule/osal_task.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/schedule/wait/wait.md": {
+      "header": "src/kernel/osal/include/schedule/osal_wait.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/schedule/workqueue/workqueue.md": {
+      "header": "src/kernel/osal/include/schedule/osal_workqueue.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/semaphore/semaphore.md": {
+      "header": "src/kernel/osal/include/semaphore/osal_semaphore.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/string/string.md": {
+      "header": "src/kernel/osal/include/string/osal_string.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/api-reference/osal/time/time.md": {
+      "header": "src/kernel/osal/include/time/osal_timer.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/connectivity/sle/data-comm/uart-bridge.md": {
+      "header": "src/kernel/osal/include/soc_osal.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/hello-world.md": {
+      "header": "src/include/common_def.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/network/tcp-udp/tcp-udp.md": {
+      "header": "src/kernel/liteos/liteos_v208.5.0/Huawei_LiteOS/open_source/musl/arch/generic/bits/socket.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/os/ipc/event-flag-wait.md": {
+      "header": "src/kernel/osal/include/event/osal_event.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/os/ipc/mutex-exclusive.md": {
+      "header": "src/kernel/osal/include/lock/osal_mutex.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/os/ipc/semaphore-sync.md": {
+      "header": "src/kernel/osal/include/semaphore/osal_semaphore.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/adc/adc.md": {
+      "header": "src/include/driver/adc.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/efuse/efuse.md": {
+      "header": "src/include/driver/efuse.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/gpio/gpio-output.md": {
+      "header": "src/include/driver/pinctrl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/i2c/i2c.md": {
+      "header": "src/include/driver/pinctrl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/pwm/pwm.md": {
+      "header": "src/include/driver/pinctrl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/spi/spi.md": {
+      "header": "src/include/driver/pinctrl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/tcxo/tcxo.md": {
+      "header": "src/include/driver/tcxo.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/peripherals/uart/uart.md": {
+      "header": "src/include/driver/pinctrl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/security/tls/tls.md": {
+      "header": "src/open_source/mbedtls/mbedtls_v3.6.0/include/mbedtls/ssl.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/system/cjson.md": {
+      "header": "src/open_source/cjson/cjson/cJSON.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/system/diagnostics/diagnostics.md": {
+      "header": "src/include/middleware/utils/diag_log.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/samples/system/filesystem/filesystem.md": {
+      "header": "src/kernel/liteos/liteos_v208.5.0/Huawei_LiteOS/compat/nuttx/include/mount/mount.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/software/CoAP 开发指南/CoAP 开发指南.md": {
+      "header": "src/open_source/lwip/lwip_v2.1.3/src/include/lwip/netifapi.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/software/HTTP 开发指南/HTTP 开发指南.md": {
+      "header": "src/bootloader/commonboot/libc/include/stdio.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/software/LiteOS 开发指南/LiteOS 开发指南.md": {
+      "header": "src/kernel/liteos/liteos_v208.5.0/Huawei_LiteOS/kernel/include/los_hwi.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/software/lwIP 开发指南/lwIP 开发指南.md": {
+      "header": "src/bootloader/commonboot/libc/include/stdio.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/software/MQTT 开发指南/MQTT 开发指南.md": {
+      "header": "src/bootloader/commonboot/libc/include/stdio.h",
+      "lang": "c"
+    },
+    "docs/zh-CN/software/设备驱动 开发指南/设备驱动 开发指南.md": {
+      "header": "src/include/driver/gpio.h",
+      "lang": "c"
+    }
+  }
+}
