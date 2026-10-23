@@ -13,6 +13,7 @@ SLE (SparkLink Low Energy) 连接管理模块负责设备发现与连接的完�
 | 接口名称 | 功能简述 |
 | -------- | -------- |
 | [sle_connect_remote_device](#sle_connect_remote_device) | 向远端设备发起SLE连接请求 |
+| [sle_create_connection_cancel](#sle_create_connection_cancel) | 取消创建连接 |
 | [sle_disconnect_remote_device](#sle_disconnect_remote_device) | 向远端设备发起断开连接请求 |
 | [sle_disconnect_all_remote_device](#sle_disconnect_all_remote_device) | 断开所有SLE连接 |
 | [sle_update_connect_param](#sle_update_connect_param) | 发送连接参数更新请求 |
@@ -33,6 +34,7 @@ SLE (SparkLink Low Energy) 连接管理模块负责设备发现与连接的完�
 | [sle_customize_max_pwr](#sle_customize_max_pwr) | 配置BLE (Bluetooth Low Energy) 和SLE最大功率 |
 | [enable_sle](#enable_sle) | 使能SLE协议栈 |
 | [disable_sle](#disable_sle) | 关闭SLE协议栈 |
+| [sle_get_stack_state](#sle_get_stack_state) | 查询SLE协议栈状态 |
 | [sle_set_local_addr](#sle_set_local_addr) | 设置本地设备地址 |
 | [sle_get_local_addr](#sle_get_local_addr) | 获取本地设备地址 |
 | [sle_set_local_name](#sle_set_local_name) | 设置本地设备名称 |
@@ -92,6 +94,42 @@ errcode_t sle_connect_remote_device(const sle_addr_t *addr)
 **参考案例**
 
 - [sle_speed_client.c](https://gitcode.com/HiSpark/fbb_ws63/tree/master/src/application/samples/bt/sle/sle_speed_client/src/sle_speed_client.c)
+
+### sle_create_connection_cancel <a id="sle_create_connection_cancel"></a>
+
+```c
+errcode_t sle_create_connection_cancel(void)
+```
+
+**头文件清单**
+
+```c
+#include "include/middleware/services/bts/sle/sle_connection_manager.h"
+```
+
+**功能说明**
+
+- 取消正在创建的SLE连接
+- 调用后异步执行，取消结果通过sle_connect_state_changed_callback回调返回
+
+**前置条件**
+
+- SLE协议栈已通过enable_sle使能
+- 已通过sle_connect_remote_device发起到远端设备的连接请求，且连接尚未建立完成
+- 已通过sle_connection_register_callbacks注册连接状态回调
+
+**入参**
+
+无
+
+**返回值**
+
+- 返回类型：errcode_t
+
+| 返回值 | 文字含义 | 触发场景 |
+| -------- | -------- | -------- |
+| ERRCODE_SUCC(0x00) | 执行成功 | 取消连接请求成功发起 |
+| Other | 其他错误码，参考[errcode_t](#typedef_errcode_t) | 执行失败 |
 
 ### sle_disconnect_remote_device <a id="sle_disconnect_remote_device"></a>
 
@@ -915,6 +953,46 @@ errcode_t disable_sle(void)
 
 - [oh_sle_srv_dd.c](https://gitcode.com/HiSpark/fbb_ws63/tree/master/src/application/samples/wifi/ohos_connect/hilink_adapt/adapter/oh_sle_srv_dd.c)
 
+### sle_get_stack_state <a id="sle_get_stack_state"></a>
+
+```c
+errcode_t sle_get_stack_state(uint8_t *stack_state)
+```
+
+**头文件清单**
+
+```c
+#include "include/middleware/services/bts/sle/sle_device_discovery.h"
+```
+
+**功能说明**
+
+- 查询SLE协议栈当前状态
+- 查询结果通过出参stack_state返回，取值为[sle_stack_state_t](#enum_sle_stack_state_t)枚举
+
+**前置条件**
+
+- 无
+
+**入参**
+
+无
+
+**出参**
+
+| 名称 | 数据类型 | 输出说明 |
+| ---- | ---- | ---- |
+| stack_state | uint8_t * | 协议栈状态，取值为[sle_stack_state_t](#enum_sle_stack_state_t)枚举，指针不为NULL |
+
+**返回值**
+
+- 返回类型：errcode_t
+
+| 返回值 | 文字含义 | 触发场景 |
+| -------- | -------- | -------- |
+| ERRCODE_SUCC(0x00) | 执行成功 | 状态查询成功 |
+| Other | 其他错误码，参考[errcode_t](#typedef_errcode_t) | 执行失败 |
+
 ### sle_set_local_addr <a id="sle_set_local_addr"></a>
 
 ```c
@@ -1553,6 +1631,26 @@ typedef uint32_t errcode_t;
 - ERRCODE_SUCC(0x00)表示成功，其他值表示失败
 
 ## Enumerations
+
+### sle_stack_state_t <a id="enum_sle_stack_state_t"></a>
+
+```c
+typedef enum {
+    SLE_STATE_DISABLED,   /* SLE协议栈已禁能 */
+    SLE_STATE_DISABLING,  /* SLE协议栈禁能中 */
+    SLE_STATE_ENABLED,    /* SLE协议栈已使能 */
+    SLE_STATE_ENABLING,   /* SLE协议栈使能中 */
+} sle_stack_state_t;
+```
+
+SLE协议栈状态
+
+| 枚举值 | 值 | 说明 |
+| ------ | -- | ---- |
+| SLE_STATE_DISABLED | 0 | SLE协议栈已禁能 |
+| SLE_STATE_DISABLING | 1 | SLE协议栈禁能中 |
+| SLE_STATE_ENABLED | 2 | SLE协议栈已使能 |
+| SLE_STATE_ENABLING | 3 | SLE协议栈使能中 |
 
 ### sle_pair_state_t <a id="enum_sle_pair_state_t"></a>
 
