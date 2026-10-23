@@ -5,4 +5,3 @@ src/interim_binary
 src/build.log
 __pycache__
 *.hiproj
-pr/report/
