@@ -3,14 +3,14 @@
 # Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
 #===============================================================================
 
-config ENABLE_WIFI_STA
+config ENABLE_GATEWAY
     bool
-    prompt "Enable wifi station."
+    prompt "Enable gateway."
     default y
     depends on ADVICTOR_ENABLE
     help
-        This option means enable the wifi station.
+        This option means enable the gateway.
 
-if ENABLE_WIFI_STA
-    osource "application/advictor/wifi_sta/Kconfig"
+if ENABLE_GATEWAY
+    osource "application/advictor/gateway/Kconfig"
 endif

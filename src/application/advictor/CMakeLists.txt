@@ -4,8 +4,8 @@
 #===============================================================================
 set(COMPONENT_NAME "advictor")
 
-if(CONFIG_ENABLE_WIFI_STA)
-    add_subdirectory_if_exist(wifi_sta)
+if(CONFIG_ENABLE_GATEWAY)
+    add_subdirectory_if_exist(gateway)
 endif()
 
 set(WHOLE_LINK
@@ -16,8 +16,8 @@ set(MAIN_COMPONENT
     false
 )
 
-if(CONFIG_ENABLE_WIFI_STA)
-    install_sdk("${CMAKE_CURRENT_SOURCE_DIR}/wifi_sta" "*")
+if(CONFIG_ENABLE_GATEWAY)
+    install_sdk("${CMAKE_CURRENT_SOURCE_DIR}/gateway" "*")
 endif()
 
 build_component()
