@@ -1,0 +1,16 @@
+#===============================================================================
+# @brief    Kconfig file.
+# Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
+#===============================================================================
+
+config ENABLE_WIFI_STA
+    bool
+    prompt "Enable wifi station."
+    default y
+    depends on ADVICTOR_ENABLE
+    help
+        This option means enable the wifi station.
+
+if ENABLE_WIFI_STA
+    osource "application/advictor/wifi_sta/Kconfig"
+endif

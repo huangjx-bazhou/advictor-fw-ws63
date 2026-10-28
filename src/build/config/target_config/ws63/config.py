@@ -73,6 +73,7 @@ target = {
             'bg_common',
             'bth_gle',
             'bth_sdk',
+            'advictor',
             'samples',
             'bts_header',
             'bt_app',

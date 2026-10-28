@@ -3,13 +3,28 @@
 # Copyright (c) HiSilicon (Shanghai) Technologies Co., Ltd. 2023-2023. All rights reserved.
 #===============================================================================
 
-config SAMPLE_ENABLE
-    bool
-    prompt "Enable Sample."
-    default n
-    help
-        This option means support Samples.
+choice
+    prompt "Component"
+    default ADVICTOR_ENABLE
 
-if SAMPLE_ENABLE
-osource "application/samples/Kconfig"
-endif
+    config ADVICTOR_ENABLE
+        bool
+        prompt "Enable advictor component."
+        help
+            This option means support advictor components.
+
+    if ADVICTOR_ENABLE
+        osource "application/advictor/Kconfig"
+    endif
+
+    config SAMPLE_ENABLE
+        bool
+        prompt "Enable Sample."
+        help
+            This option means support Samples.
+
+    if SAMPLE_ENABLE
+        osource "application/samples/Kconfig"
+    endif
+
+endchoice
